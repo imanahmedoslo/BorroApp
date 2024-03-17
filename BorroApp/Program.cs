@@ -40,12 +40,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowSpecificOrigin",
-        builder => builder.WithOrigins("https://borro-react-app-plum.vercel.app")
-        .AllowAnyMethod()
-        .AllowAnyHeader()
-        .AllowAnyOrigin());
+    options.AddPolicy("AllowAll",
+        builder => builder
+        .AllowAnyOrigin() // Allows requests from any origin
+        .AllowAnyMethod() // Allows all HTTP methods
+        .AllowAnyHeader()); // Allows any header
 });
+
 builder.Services.AddControllers().AddJsonOptions(c => {
 	c.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
 });
@@ -69,7 +70,7 @@ app.UseSwaggerUI(options =>
 
 
 app.UseHttpsRedirection();
-app.UseCors("AllowSpecificOrigin");
+app.UseCors("AllowAll");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
