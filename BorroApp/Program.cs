@@ -49,11 +49,13 @@ builder.Services.AddDbContext<BorroDbContext>(
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 var key1 = app.Configuration.GetValue<String>("KEY");
-if (app.Environment.IsDevelopment())
-{
+
     app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwaggerUI(options =>
+{
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+    options.RoutePrefix = string.Empty;
+});
 
 
 
