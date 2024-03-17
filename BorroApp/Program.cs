@@ -40,15 +40,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: "AllowSpecificOrigin",
-                      policy =>
-                      {
-                          policy.WithOrigins("https://borro-react-app-plum.vercel.app")
-                                .AllowAnyHeader()
-                                .AllowAnyOrigin()
-                                .AllowAnyMethod();
-                      });
-});
+options.AddPolicy(name: "AllowSpecificOrigin",
+                  policy =>
+                  {
+                      policy.WithOrigins("https://borro-react-app-plum.vercel.app")
+                            .AllowAnyHeader()
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod();
+                  });
 
 builder.Services.AddControllers().AddJsonOptions(c => {
 	c.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
