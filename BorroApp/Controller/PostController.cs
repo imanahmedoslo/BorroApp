@@ -32,7 +32,7 @@ public class PostController : ControllerBase {
 		return Ok(await _context.Post.ToListAsync());
 	}
 
-	//[Authorize]
+	[Authorize]
 	[HttpPost]
 	public async Task<IActionResult> CreatePost(PostObject createPost) {
 		Post newPost = new Post {
