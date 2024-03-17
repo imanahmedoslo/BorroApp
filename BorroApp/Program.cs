@@ -43,10 +43,28 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAll",
         builder => builder
         .AllowAnyOrigin() // Allows requests from any origin
-        .AllowAnyMethod() // Allows all HTTP methods
+        .AllowAnyMethod()
+         .AllowCredentials()                                                   // Allows all HTTP methods
         .AllowAnyHeader()); // Allows any header
 });
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        builder =>
+        {
 
+            builder.WithOrigins("http://localhost:3000");
+        });
+
+   /* options.AddPolicy("AnotherPolicy",
+        builder =>
+        {
+            builder.WithOrigins(CORSComplianceDomains)
+                                .AllowAnyHeader()
+                                .AllowAnyMethod();
+        });
+   */
+});
 builder.Services.AddControllers().AddJsonOptions(c => {
 	c.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
 });
