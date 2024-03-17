@@ -29,14 +29,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 		   };
 	   });
 
-// builder.Services.AddAzureClients(x => {
-// 	x.AddClient<BlobContainerClient, BlobContainerClientOptions>(opt =>
-// 																	 new BlobContainerClient(
-// 																		 builder.Configuration[
-// 																			 "PictureStorage:ConnectionString"],
-// 																		 builder.Configuration[
-// 																			 "PictureStorage:ContainerName"]));
-// });
+ builder.Services.AddAzureClients(x => {
+ 	x.AddClient<BlobContainerClient, BlobContainerClientOptions>(opt =>
+ 																	 new BlobContainerClient(
+ 																		 builder.Configuration[
+ 																			 "PictureStorage:ConnectionString"],
+ 																		 builder.Configuration[
+ 																			 "PictureStorage:ContainerName"]));
+ });
 
 builder.Services.AddCors();
 builder.Services.AddControllers().AddJsonOptions(c => {
