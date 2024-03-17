@@ -40,21 +40,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll",
-        builder => builder
-        .AllowAnyOrigin() // Allows requests from any origin
-        .AllowAnyMethod()
-         .AllowCredentials()                                                   // Allows all HTTP methods
-        .AllowAnyHeader()); // Allows any header
+    options.AddPolicy("AllowAll", builder =>
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader()
+               .AllowCredentials()); // Remove if you don't need to send credentials (cookies, HTTP authentication) in cross-origin requests
 });
-builder.Services.AddCors(options =>
-{
-    options.AddDefaultPolicy(
-        builder =>
-        {
 
-            builder.WithOrigins("http://localhost:3000");
-        });
 
    /* options.AddPolicy("AnotherPolicy",
         builder =>
@@ -64,7 +56,7 @@ builder.Services.AddCors(options =>
                                 .AllowAnyMethod();
         });
    */
-});
+
 builder.Services.AddControllers().AddJsonOptions(c => {
 	c.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
 });
