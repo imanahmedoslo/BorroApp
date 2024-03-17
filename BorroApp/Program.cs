@@ -48,14 +48,15 @@ builder.Services.AddDbContext<BorroDbContext>(
 	c => c.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 var app = builder.Build();
 // Configure the HTTP request pipeline.
-
-	app.UseSwagger();
-	app.UseSwaggerUI();
-
-
-
+var key1 = app.Configuration.GetValue<String>("KEY");
+if (app.Environment.IsDevelopment())
+{
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+
+
+
 
 
 app.UseHttpsRedirection();

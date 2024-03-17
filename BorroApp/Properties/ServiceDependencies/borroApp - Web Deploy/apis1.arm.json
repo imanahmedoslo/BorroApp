@@ -36,7 +36,7 @@
     },
     {
       "type": "Microsoft.Resources/deployments",
-      "name": "[concat(parameters('resourceGroupName'), 'Deployment', uniqueString(concat('BorroApp', subscription().subscriptionId)))]",
+      "name": "[concat(parameters('resourceGroupName'), 'Deployment', uniqueString(concat('Borroappp', subscription().subscriptionId)))]",
       "resourceGroup": "[parameters('resourceGroupName')]",
       "apiVersion": "2019-10-01",
       "dependsOn": [
@@ -95,14 +95,14 @@
             },
             {
               "type": "Microsoft.ApiManagement/service/apis",
-              "name": "BorroAppapi/BorroApp",
+              "name": "BorroAppapi/Borroappp",
               "properties": {
-                "displayName": "BorroApp",
+                "displayName": "Borroappp",
                 "apiRevision": "1",
                 "description": null,
                 "subscriptionRequired": true,
                 "serviceUrl": null,
-                "path": "",
+                "path": "app",
                 "protocols": [
                   "https"
                 ],
