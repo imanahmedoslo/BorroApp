@@ -38,7 +38,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
  																			 "PictureStorage:ContainerName"]));
  });
 
-builder.Services.AddCors();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder => builder.WithOrigins("https://borro-react-app-plum.vercel.app")
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowAnyOrigin());
+});
 builder.Services.AddControllers().AddJsonOptions(c => {
 	c.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
 });
@@ -62,12 +69,7 @@ app.UseSwaggerUI(options =>
 
 
 app.UseHttpsRedirection();
-app.UseCors(c => {
-	c
-		.AllowAnyHeader()
-		.AllowAnyMethod()
-		.AllowAnyOrigin();
-});
+app.UseCors("AllowAll");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
