@@ -46,7 +46,6 @@ builder.Services.AddCors(options =>
                       {
                           policy.WithOrigins("https://borro-react-app-plum.vercel.app")
                                 .AllowAnyHeader()
-                                .AllowAnyOrigin()
                                 .AllowAnyMethod();
                       });
    
