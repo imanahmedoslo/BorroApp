@@ -37,7 +37,6 @@ public class PostController : ControllerBase {
 	public async Task<IActionResult> CreatePost(PostObject createPost) {
 		Post newPost = new Post {
 			Title       = createPost.Title,
-			Image       = createPost.Image,
 			Price       = createPost.Price,
 			DateFrom    = createPost.DateFrom,
 			DateTo      = createPost.DateTo,
