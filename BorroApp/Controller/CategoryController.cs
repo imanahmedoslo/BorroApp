@@ -40,7 +40,7 @@ public class CategoryController : ControllerBase {
 
 		return CreatedAtRoute(new { id = newCategory.Id }, newCategory);
 	}
-    [Authorize]
+   
     [HttpPut("{id:int}")]
 	public async Task<IActionResult> UpdateCategory(int id, CategoryObject title) {
 		var category = await _context.Category.FindAsync(id);//(title.Id)
